@@ -5,6 +5,7 @@ import { post } from "./mock-requests.js";
  * FORM SENDER (forms-runner)
  */
 // Generate a key pair. In prod this would be generated outside of the application.
+// The public key is shared with the consumers, the private key stays with us.
 const { publicKey, privateKey } = generateKey();
 
 // The payload we want to send to the user
