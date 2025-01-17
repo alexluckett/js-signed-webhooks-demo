@@ -42,7 +42,7 @@ console.assert(isValid == true) // it matches as expected
 requestPayload.context.state.applicantsName = "my malicious beneficiary";
 requestPayload.context.state.doYouWantFreeMoney = "yes";
 
-const isValid2 = verifySignature(publicKey, signature, request.body);
+const isValid2 = verifySignature(publicKey, signature, requestPayload);
 console.assert(isValid2 == false) // we've modified the payload, the signature shouldn't match
 
 console.log("All worked!");
