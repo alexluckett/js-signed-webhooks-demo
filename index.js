@@ -30,28 +30,16 @@ const request = post(signature, requestPayload);
 /**
  * FORM CONSUMER (my-backend-api) - VALID SIGNATURE
  */
-console.log("\n******\nLEGITIMATE REQUEST EXAMPLE\n******");
 const isValid = verifySignature(publicKey, signature, requestPayload);
-
-if (isValid) {
-  console.log("Signature is valid. Processing data.");
-} else {
-  console.log("Signature is invalid. Rejecting request.");
-}
+console.assert(isValid == true) // it matches as expected
 
 /**
  * FORM CONSUMER (my-backend-api) - INVALID SIGNATURE
  */
-console.log("\n******\nMALICIOUS REQUEST EXAMPLE\n******");
-
-// tamper with the payload
 requestPayload.context.state.applicantsName = "my malicious beneficiary";
 requestPayload.context.state.doYouWantFreeMoney = "yes";
 
 const isValid2 = verifySignature(publicKey, signature, requestPayload);
+console.assert(isValid2 == false) // we've modified the payload, the signature shouldn't match
 
-if (isValid2) {
-  console.log("Signature is valid. Processing data.");
-} else {
-  console.log("Signature is invalid. Rejecting request.");
-}
+console.log("All worked!");
