@@ -27,10 +27,12 @@ const signature = createSignature(privateKey, requestPayload);
 // Create the request
 const request = post(signature, requestPayload);
 
+console.log("Here's what the request will look like", request);
+
 /**
  * FORM CONSUMER (my-backend-api) - VALID SIGNATURE
  */
-const isValid = verifySignature(publicKey, signature, requestPayload);
+const isValid = verifySignature(publicKey, signature, request.body);
 console.assert(isValid == true) // it matches as expected
 
 /**
